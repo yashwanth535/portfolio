@@ -28,6 +28,8 @@ const Portfolio = () => {
       description:
         "A real-time team collaboration platform for seamless project management.",
       image: "/teamsync.png",
+      link: "https://teamsync.yashwanth.online/",
+      vercellink: "https://teamsync-frontend-theta.vercel.app/",
       frontendRepo: "https://github.com/yashwanth535/teamsync-frontend",
       backendRepo: "https://github.com/yashwanth535/teamsync-backend",
       type: "major",
