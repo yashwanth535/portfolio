@@ -2,12 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const projects = [
-  // TeamSync (keep data, do not show)
+  // TeamSync
   {
     name: "TeamSync",
     description: "A real-time team collaboration platform for seamless project management.",
     image: "/teamsync.png",
-    link: "https://teamsync.yashwanth.site/",
+    frontendRepo: "https://github.com/yashwanth535/teamsync-frontend",
+    backendRepo: "https://github.com/yashwanth535/teamsync-backend",
     type: "major",
     hidden: true
   },
@@ -16,7 +17,19 @@ const projects = [
     name: "PrintEase",
     description: "A website to share PDFs with printing shops for streamlined printing.",
     image: "/printease.png",
-    link: "https://printease.yashwanth.site/",
+    link: "https://printease.yashwanth.online/",
+    type: "major",
+    hidden: true
+  },
+  // Smartfeast
+  {
+    name: "Smartfeast",
+    description: "A QR menu scanner and ordering system for restaurants to provide contactless dining experiences.",
+    image: "/smartfeast.png",
+    link: "https://smartfeast.yashwanth.online",
+    vercellink: "https://smartfeast-frontend.vercel.app/",
+    frontendRepo: "https://github.com/smartfeastt/Smartfeast-frontend",
+    backendRepo: "https://github.com/smartfeastt/Smartfeast-backend",
     type: "major",
     hidden: true
   },
@@ -25,32 +38,32 @@ const projects = [
     name: "Flavour Fusion",
     description: "Discover and share unique recipes with a vibrant food community.",
     image: "/fusion.png",
-    link: "https://fusion.yashwanth.site",
-    type: "major"
+    link: "https://fusion.yashwanth.online",
+    type: "minor"
   },
   // Kriya (url pinger, show, update name, link, image)
   {
     name: "Kriya",
     description: "Monitor the uptime and response time of your favorite URLs.",
     image: "/kriya.png",
-    link: "https://kriya.yashwanth.site",
-    type: "major"
+    link: "https://kriya.yashwanth.online",
+    type: "minor"
   },
   // InShareX (show, update image if needed)
   {
     name: "InShareX",
     description: "A fast and secure file sharing platform for all your needs.",
     image: "/insharex.png",
-    link: "https://insharex.yashwanth.site/",
-    type: "major"
+    link: "https://insharex.yashwanth.online/",
+    type: "minor"
   },
   // SyncHub (keep data, do not show)
   {
     name: "SyncHub",
     description: "Centralized hub for syncing data across multiple devices and platforms.",
     image: "/synchub.png",
-    link: "https://synchub.yashwanth.site/",
-    type: "major",
+    link: "https://synchub.yashwanth.online/",
+    type: "minor",
     hidden: true
   },
   // SkyWatch (show as minor)
@@ -58,7 +71,7 @@ const projects = [
     name: "SkyWatch",
     description: "A weather monitoring and alert system for your local area.",
     image: "/skywatch.png",
-    link: "https://skywatch.yashwanth.site/",
+    link: "https://skywatch.yashwanth.online/",
     type: "minor"
   },
   // MoneyMind (show as minor)
@@ -66,7 +79,7 @@ const projects = [
     name: "MoneyMind",
     description: "A website to track your finances, create budgets, savings, etc.",
     image: "/moneymind.png",
-    link: "https://moneymind.yashwanth.site/",
+    link: "https://moneymind.yashwanth.online/",
     type: "minor"
   }
 ];

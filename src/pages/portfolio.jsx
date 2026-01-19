@@ -24,11 +24,22 @@ const Portfolio = () => {
 
   const majorProjects = [
     {
+      name: "TeamSync",
+      description:
+        "A real-time team collaboration platform for seamless project management.",
+      image: "/teamsync.png",
+      frontendRepo: "https://github.com/yashwanth535/teamsync-frontend",
+      backendRepo: "https://github.com/yashwanth535/teamsync-backend",
+      type: "major",
+      body: `
+  TeamSync is a real-time team collaboration platform built to streamline project management and enhance team productivity. The platform enables teams to work together seamlessly with real-time updates, task management, and communication features. Built with modern web technologies, TeamSync provides an intuitive interface for managing projects, assigning tasks, and tracking progress in real-time.`,
+    },
+    {
       name: "PrintEase",
       description:
         "A website to share PDFs with printing shops for streamlined printing.",
       image: "/printease.png",
-      link: "https://printease.yashwanth.site/",
+      link: "https://printease.yashwanth.online/",
       vercellink: "https://print-ease-frontend.vercel.app/",
       frontendRepo: "https://github.com/yashwanth535/PrintEase-frontend",
       backendRepo: "https://github.com/yashwanth535/PrintEase-backend",
@@ -39,14 +50,29 @@ const Portfolio = () => {
   On the backend, we built RESTful APIs in Express.js with JWT authentication for Customers and Vendors, a 50% advance payment flow secured via Stripe, and Socket.io–powered WebSockets to push live order status updates (accepted, printing, out for delivery). We also automated PDF cleanup once jobs complete, and provided PDF preview links in both user and vendor dashboards—resulting in a fully end‑to‑end, real‑time print ordering system.`,
     },
     {
+      name: "Smartfeast",
+      description:
+        "A QR menu scanner and ordering system for restaurants to provide contactless dining experiences.",
+      image: "/smartfeast.png",
+      link: "https://smartfeast.yashwanth.online",
+      vercellink: "https://smartfeast-frontend.vercel.app/",
+      frontendRepo: "https://github.com/smartfeastt/Smartfeast-frontend",
+      backendRepo: "https://github.com/smartfeastt/Smartfeast-backend",
+      type: "major",
+      body: `
+  Smartfeast is a QR menu scanner and ordering system designed to revolutionize the restaurant dining experience. Customers can scan a QR code at their table to instantly access the restaurant's digital menu, browse items with detailed descriptions and images, and place orders directly from their smartphones. This contactless solution eliminates the need for physical menus and reduces wait times.
+  
+  The platform features a comprehensive admin dashboard for restaurant owners to manage menus, track orders in real-time, and update item availability. Built with modern web technologies, Smartfeast provides a seamless ordering experience with real-time order status updates, secure payment integration, and an intuitive interface that works across all devices.`,
+    },
+    {
       name: "InShareX",
       description: "A fast and secure file sharing platform for all your needs.",
       image: "/insharex.png",
-      link: "https://insharex.yashwanth.site/",
+      link: "https://insharex.yashwanth.online/",
       vercellink: "https://insharex-frontend.vercel.app/",
       frontendRepo: "https://github.com/yashwanth535/InShareX-frontend",
       backendRepo: "https://github.com/yashwanth535/InShareX-backend",
-      type: "major",
+      type: "minor",
       body: `
   InShareX is a peer‑to‑peer file sharing service built with React, WebRTC, and WebSockets. The frontend implements chunked file transfer using the browser’s WebRTC data channels for direct browser‑to‑browser transfers, and falls back to a secure Express‑based relay server when peers cannot connect directly. A chat overlay lets users communicate during transfers, and transfer progress is tracked with live updates.
   
@@ -57,11 +83,11 @@ const Portfolio = () => {
       description:
         "Discover and share unique recipes with a vibrant food community.",
       image: "/fusion.png",
-      link: "https://fusion.yashwanth.site",
+      link: "https://fusion.yashwanth.online",
       vercellink: "https://fusion-frontend-omega.vercel.app/",
       frontendRepo: "https://github.com/yashwanth535/Fusion-frontend",
       backendRepo: "https://github.com/yashwanth535/Fusion-backend",
-      type: "major",
+      type: "minor",
       body: `
   Flavour Fusion is a social cooking platform built on the MERN stack (MongoDB, Express, React, Node.js) with Tailwind CSS for styling. Users can create accounts, post recipes with images, tag ingredients, and browse a personalized feed powered by keyword‑based searches. The frontend uses React Context for global state and React Router for client‑side navigation.
   
@@ -72,7 +98,7 @@ const Portfolio = () => {
       description:
         "A website to track your finances, create budgets, savings, etc.",
       image: "/moneymind.png",
-      link: "https://moneymind.yashwanth.site/",
+      link: "https://moneymind.yashwanth.online/",
       vercellink: "https://moneymind-frontend.vercel.app/",
       frontendRepo: "https://github.com/yashwanth535/MoneyMind-frontend",
       backendRepo: "https://github.com/yashwanth535/MoneyMind-backend",
@@ -86,7 +112,7 @@ const Portfolio = () => {
       name: "Kriya",
       description: "Monitor the uptime and response time of your favorite URLs.",
       image: "/kriya.png",
-      link: "https://kriya.yashwanth.site",
+      link: "https://kriya.yashwanth.online",
       vercellink: "https://kriya-frontend-ten.vercel.app/",
       frontendRepo: "https://github.com/yashwanth535/Kriya-frontend",
       backendRepo: "https://github.com/yashwanth535/Kriya-backend",
@@ -100,7 +126,7 @@ const Portfolio = () => {
       name: "SkyWatch",
       description: "A weather monitoring and alert system for your local area.",
       image: "/skywatch.png",
-      link: "https://skywatch.yashwanth.site/",
+      link: "https://skywatch.yashwanth.online/",
       vercellink: "https://skywatch.vercel.app/",
       frontendRepo: "https://github.com/yashwanth535/SkyWatch",
       type: "minor",
@@ -114,7 +140,7 @@ const Portfolio = () => {
       description:
         "Streamlines patient records, medicine inventory, and appointment tracking for efficient dispensary operations.",
       image: "/dispensary.png",
-      link: "https://dispensarymanagement.yashwanth.site/",
+      link: "https://dispensarymanagement.yashwanth.online/",
       cloudflarelink: "https://patient-prescription.pages.dev/",
       frontendRepo: "https://github.com/yashwanth535/patient-prescription",
       type: "minor",
