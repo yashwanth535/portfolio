@@ -3,6 +3,7 @@ import Portfolio from './pages/portfolio';
 import Projects from './pages/projects';
 import Resume from './pages/resume';
 import ResumePage from './pages/resumePage'
+import Yt from './pages/Yt'
 import './App.css';
 
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/r" element={<Resume />} />
         <Route path="/resume" element={<ResumePage/>} />
+        <Route path="/yt" element={<Yt />} />
 
       </Routes>
     </Router>

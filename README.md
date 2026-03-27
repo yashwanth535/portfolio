@@ -1,12 +1,42 @@
-# React + Vite
+# Portfolio + YouTube Watchlist
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This app now has:
 
-Currently, two official plugins are available:
+- Frontend: React + Vite (`/yt` page for watching videos)
+- Backend: Express + MongoDB API (`/api/yt` endpoints)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Environment setup
 
-## Expanding the ESLint configuration
+1. Copy `.env.example` to `.env`.
+2. Set your values:
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```env
+MONGODB_URI=your_mongodb_connection_string
+PORT=3000
+FRONTEND_ORIGIN=http://localhost:5173
+```
+
+## Run locally
+
+Use two terminals:
+
+1. API server
+
+```bash
+npm run server
+```
+
+2. Frontend
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:5173/yt`.
+
+## API endpoints
+
+- `GET /api/yt` - list saved YouTube links
+- `POST /api/yt` - add a link (`url`, optional `title`, `section`)
+- `PATCH /api/yt/:id/section` - move between `watch-now` and `watch-later`
+- `DELETE /api/yt/:id` - remove a link
