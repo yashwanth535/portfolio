@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FaExternalLinkAlt, FaGithub, FaCloud } from "react-icons/fa";
-import profilePhoto from "../assets/profile.png";
+import profilePhoto from "../assets/profile.webp";
+import ProgressiveImage from "react-progressive-image-loading";
 
 const Portfolio = () => {
   const aboutRef = useRef(null);
