@@ -151,7 +151,7 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
   const filteredProjects = majorProjects.filter((p) => p.type === projectFilter);
 
   useEffect(() => {
-    const particleCount = 40;
+    const particleCount = window.innerWidth < 640 ? 20 : 40;
     const newParticles = Array.from({ length: particleCount }, (_, i) => ({
       id: i,
       x: Math.random() * window.innerWidth,
@@ -211,7 +211,7 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const navHeight = 90;
+      const navHeight = window.innerWidth < 640 ? 64 : 90;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - navHeight;
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
@@ -219,6 +219,14 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
   };
 
   const navigate = useNavigate();
+
+  const navItems = [
+    { text: "about", id: "about" },
+    { text: "skills", id: "skills", hideOnMobile: true },
+    { text: "experience", id: "experience" },
+    { text: "projects", id: "projects" },
+    { text: "contact", id: "contact" },
+  ];
 
   return (
     <>
@@ -228,6 +236,8 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
         .font-code { font-family: 'JetBrains Mono', ui-monospace, monospace; }
         .font-body { font-family: 'Inter', system-ui, sans-serif; }
         ::selection { background: #3ea6ff55; color: #eaf4ff; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
       `}</style>
 
       <div className="min-h-screen flex flex-col bg-[#05070c] font-body relative overflow-hidden">
@@ -260,14 +270,15 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
         </div>
 
         <div className="relative z-10">
-          {/* NAV */}
+          {/* NAV — single row on every breakpoint; "skills" link hides on mobile
+              since the skills section is one scroll away from about anyway. */}
           <header className="fixed top-0 w-full z-50 bg-[#05070c]/80 backdrop-blur-md border-b border-[#1a2233] select-none">
-            <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between">
+            <div className="max-w-6xl mx-auto px-3 sm:px-6 h-14 sm:h-[72px] flex items-center justify-between gap-2">
               <motion.h1
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="font-code text-xl md:text-2xl font-bold text-[#eaf4ff]"
+                className="font-code text-sm sm:text-xl md:text-2xl font-bold text-[#eaf4ff] whitespace-nowrap shrink-0"
               >
                 <span className="text-[#3ea6ff]">~/</span>yashwanth535
                 <span className="text-[#3ea6ff] animate-pulse">_</span>
@@ -277,19 +288,15 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="mt-3 md:mt-0 flex flex-wrap gap-1 font-code text-sm"
+                className="flex flex-nowrap items-center gap-0.5 sm:gap-1 font-code text-[11px] sm:text-sm overflow-x-auto no-scrollbar"
               >
-                {[
-                  { text: "about", id: "about" },
-                  { text: "skills", id: "skills" },
-                  { text: "experience", id: "experience" },
-                  { text: "projects", id: "projects" },
-                  { text: "contact", id: "contact" },
-                ].map((item) => (
+                {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="px-3 py-1.5 rounded text-[#8fa3bf] hover:text-[#3ea6ff] hover:bg-[#3ea6ff0f] transition-colors duration-200"
+                    className={`px-1.5 sm:px-3 py-1.5 rounded text-[#8fa3bf] hover:text-[#3ea6ff] hover:bg-[#3ea6ff0f] transition-colors duration-200 whitespace-nowrap ${
+                      item.hideOnMobile ? "hidden sm:inline-block" : ""
+                    }`}
                   >
                     <span className="text-[#3ea6ff]/60">&lt;</span>
                     {item.text}
@@ -300,7 +307,7 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
             </div>
           </header>
 
-          <main className="flex-grow p-5 md:p-10 max-w-6xl mx-auto w-full mt-[88px] z-10">
+          <main className="flex-grow p-4 sm:p-5 md:p-10 max-w-6xl mx-auto w-full mt-[72px] sm:mt-[88px] z-10">
             {/* ABOUT */}
             <motion.section
               id="about"
@@ -309,17 +316,17 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
               animate={aboutVisible ? "visible" : "hidden"}
               variants={fadeInUp}
               transition={{ duration: 0.5 }}
-              className="rounded-xl mb-10 border border-[#1a2233] bg-[#0a0e17] overflow-hidden shadow-[0_0_40px_-15px_#3ea6ff33]"
+              className="rounded-xl mb-8 sm:mb-10 border border-[#1a2233] bg-[#0a0e17] overflow-hidden shadow-[0_0_40px_-15px_#3ea6ff33]"
             >
               <SectionChrome label="about.jsx" />
-              <div className="p-6 md:p-8 flex flex-col lg:flex-row gap-8 items-start">
+              <div className="p-5 sm:p-6 md:p-8 flex flex-col lg:flex-row gap-6 sm:gap-8 items-start">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={aboutVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.5, delay: 0.15 }}
-                  className="lg:w-1/3 flex flex-col items-center text-center"
+                  className="w-full lg:w-1/3 flex flex-col items-center text-center"
                 >
-                  <div className="w-72 h-72 rounded-full overflow-hidden border-2 border-[#3ea6ff] shadow-[0_0_40px_-8px_#3ea6ff88]">
+                  <div className="w-40 h-40 sm:w-56 sm:h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden border-2 border-[#3ea6ff] shadow-[0_0_40px_-8px_#3ea6ff88]">
                     <img
                       src={profilePhoto}
                       alt="Yashwanth Munikuntla"
@@ -329,17 +336,17 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
                   <p className="font-code text-xs text-[#3ea6ff] mt-4">
                     &gt; whoami
                   </p>
-                  <p className="font-code text-lg font-semibold text-[#eaf4ff] mt-1">
+                  <p className="font-code text-base sm:text-lg font-semibold text-[#eaf4ff] mt-1">
                     Yashwanth Munikuntla
                   </p>
                 </motion.div>
 
-                <div className="lg:w-2/3">
+                <div className="w-full lg:w-2/3">
                   <motion.p
                     initial={{ opacity: 0, x: 15 }}
                     animate={aboutVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 15 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="text-[#b9c6d9] leading-relaxed"
+                    className="text-[#b9c6d9] leading-relaxed text-sm sm:text-base"
                   >
                     Hello! I'm a full-stack developer who loves building
                     user-friendly applications and creative solutions. My goal
@@ -351,7 +358,7 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
                     initial={{ opacity: 0, x: 15 }}
                     animate={aboutVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 15 }}
                     transition={{ duration: 0.5, delay: 0.45 }}
-                    className="mt-6 space-y-3 font-code text-sm"
+                    className="mt-6 space-y-3 font-code text-xs sm:text-sm"
                   >
                     {[
                       "Full-stack development with modern technologies",
@@ -376,11 +383,11 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
               animate={skillsVisible ? "visible" : "hidden"}
               variants={fadeInUp}
               transition={{ duration: 0.5 }}
-              className="rounded-xl mb-10 border border-[#1a2233] bg-[#0a0e17] overflow-hidden shadow-[0_0_40px_-15px_#3ea6ff33]"
+              className="rounded-xl mb-8 sm:mb-10 border border-[#1a2233] bg-[#0a0e17] overflow-hidden shadow-[0_0_40px_-15px_#3ea6ff33]"
             >
               <SectionChrome label="skills.json" />
-              <div className="p-6 md:p-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div className="p-5 sm:p-6 md:p-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
                   {[
                     {
                       name: "Programming Languages",
@@ -406,7 +413,7 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
                     <motion.div
                       key={index}
                       whileHover={{ borderColor: "#3ea6ff", y: -2 }}
-                      className="rounded-lg border border-[#1a2233] bg-[#0d1220] p-5 transition-colors duration-200"
+                      className="rounded-lg border border-[#1a2233] bg-[#0d1220] p-4 sm:p-5 transition-colors duration-200"
                     >
                       <p className="font-code text-xs text-[#3ea6ff] mb-3">
                         // {category.name.toLowerCase()}
@@ -432,18 +439,18 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5 }}
-              className="rounded-xl mb-10 border border-[#1a2233] bg-[#0a0e17] overflow-hidden shadow-[0_0_40px_-15px_#3ea6ff33]"
+              className="rounded-xl mb-8 sm:mb-10 border border-[#1a2233] bg-[#0a0e17] overflow-hidden shadow-[0_0_40px_-15px_#3ea6ff33]"
             >
               <SectionChrome label="experience.log" />
-              <div className="p-6 md:p-8 space-y-5">
+              <div className="p-5 sm:p-6 md:p-8 space-y-5">
                 {experience.map((job, index) => (
                   <motion.div
                     key={index}
                     whileHover={{ borderColor: "#3ea6ff", y: -2 }}
-                    className="rounded-lg border border-[#1a2233] bg-[#0d1220] p-5 transition-colors duration-200"
+                    className="rounded-lg border border-[#1a2233] bg-[#0d1220] p-4 sm:p-5 transition-colors duration-200"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                      <h3 className="font-code text-lg font-semibold text-[#eaf4ff]">
+                      <h3 className="font-code text-base sm:text-lg font-semibold text-[#eaf4ff]">
                         {job.role}
                         <span className="text-[#3ea6ff]"> @ </span>
                         {job.company}
@@ -482,18 +489,18 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
               animate={projectsVisible ? "visible" : "hidden"}
               variants={fadeInUp}
               transition={{ duration: 0.5 }}
-              className="rounded-xl mb-10 border border-[#1a2233] bg-[#0a0e17] overflow-hidden shadow-[0_0_40px_-15px_#3ea6ff33]"
+              className="rounded-xl mb-8 sm:mb-10 border border-[#1a2233] bg-[#0a0e17] overflow-hidden shadow-[0_0_40px_-15px_#3ea6ff33]"
             >
               <SectionChrome label="projects.map()" />
-              <div className="p-6 md:p-8">
+              <div className="p-5 sm:p-6 md:p-8">
                 {/* Major / Minor toggle */}
-                <div className="flex justify-center mb-8">
+                <div className="flex justify-center mb-6 sm:mb-8">
                   <div className="inline-flex rounded-full border border-[#1a2233] bg-[#0d1220] p-1 font-code text-sm">
                     {["major", "minor"].map((type) => (
                       <button
                         key={type}
                         onClick={() => setProjectFilter(type)}
-                        className={`relative px-5 py-2 rounded-full transition-colors duration-200 ${
+                        className={`relative px-4 sm:px-5 py-2 rounded-full transition-colors duration-200 ${
                           projectFilter === type ? "text-[#05070c]" : "text-[#8fa3bf] hover:text-[#dbe6f2]"
                         }`}
                       >
@@ -518,16 +525,16 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.25 }}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
                   >
                     {filteredProjects.map((project) => (
                       <motion.div
                         key={project.name}
                         whileHover={{ y: -4, borderColor: "#3ea6ff" }}
                         onClick={() => setSelectedProject(project)}
-                        className="cursor-pointer rounded-lg border border-[#1a2233] bg-[#0d1220] p-5 flex flex-col transition-colors duration-200 hover:shadow-[0_0_25px_-8px_#3ea6ff88]"
+                        className="cursor-pointer rounded-lg border border-[#1a2233] bg-[#0d1220] p-4 sm:p-5 flex flex-col transition-colors duration-200 hover:shadow-[0_0_25px_-8px_#3ea6ff88]"
                       >
-                        <h3 className="font-code text-lg font-semibold text-[#eaf4ff] mb-2">
+                        <h3 className="font-code text-base sm:text-lg font-semibold text-[#eaf4ff] mb-2">
                           {project.name}
                         </h3>
                         <p className="text-sm text-[#8fa3bf] leading-relaxed mb-4 flex-grow">
@@ -572,10 +579,10 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
               animate={contactVisible ? "visible" : "hidden"}
               variants={fadeInUp}
               transition={{ duration: 0.5 }}
-              className="rounded-xl mb-10 border border-[#1a2233] bg-[#0a0e17] overflow-hidden shadow-[0_0_40px_-15px_#3ea6ff33]"
+              className="rounded-xl mb-8 sm:mb-10 border border-[#1a2233] bg-[#0a0e17] overflow-hidden shadow-[0_0_40px_-15px_#3ea6ff33]"
             >
               <SectionChrome label="contact.sh" />
-              <div className="p-6 md:p-8 space-y-3 font-code text-sm">
+              <div className="p-5 sm:p-6 md:p-8 space-y-3 font-code text-sm">
                 {[
                   { label: "email", link: "mailto:yashwanthmunikuntla@gmail.com", text: "yashwanthmunikuntla@gmail.com" },
                   { label: "linkedin", link: "https://www.linkedin.com/in/yashwanth-munikuntla-370666281", text: "yashwanth-munikuntla" },
@@ -586,11 +593,11 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 group"
+                    className="flex flex-wrap items-center gap-2 sm:gap-3 group"
                   >
                     <span className="text-[#3ea6ff]">$</span>
                     <span className="text-[#8fa3bf]">{item.label} --open</span>
-                    <span className="text-[#dbe6f2] group-hover:text-[#3ea6ff] transition-colors">
+                    <span className="text-[#dbe6f2] group-hover:text-[#3ea6ff] transition-colors break-all">
                       {item.text}
                     </span>
                   </a>
@@ -611,7 +618,7 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4"
               onClick={() => setSelectedProject(null)}
             >
               <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
@@ -633,9 +640,9 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
                   ✕
                 </button>
 
-                <div className="p-6 md:p-8">
-                  <div className="flex items-center gap-3 mb-1">
-                    <h2 className="font-code text-2xl font-bold text-[#eaf4ff]">
+                <div className="p-5 sm:p-6 md:p-8">
+                  <div className="flex items-center gap-3 mb-1 flex-wrap">
+                    <h2 className="font-code text-xl sm:text-2xl font-bold text-[#eaf4ff]">
                       {selectedProject.name}
                     </h2>
                     <span
@@ -681,7 +688,7 @@ On the backend, Node.js and Express serve RESTful APIs with JWT authentication f
                     )}
                   </div>
 
-                  <div className="rounded-lg border border-[#1a2233] bg-[#0d1220] p-5">
+                  <div className="rounded-lg border border-[#1a2233] bg-[#0d1220] p-4 sm:p-5">
                     <p className="text-[#b9c6d9] leading-relaxed whitespace-pre-line text-sm">
                       {selectedProject.body}
                     </p>
@@ -702,7 +709,7 @@ const SectionChrome = ({ label }) => (
     <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
     <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
     <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-    <span className="font-code text-xs text-[#5c6b83] ml-2">{label}</span>
+    <span className="font-code text-xs text-[#5c6b83] ml-2 truncate">{label}</span>
   </div>
 );
 
